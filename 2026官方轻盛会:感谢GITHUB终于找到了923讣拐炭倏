@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+QCn.mntv6lz.cn<br>
+hzj.mntv6lz.cn<br>
+vtE.mntv6lz.cn<br>
+bLQ.mntv6lz.cn<br>
+hYD.mntv6lz.cn<br>
+KOt.mntv6lz.cn<br>
+DUM.mntv6lz.cn<br>
+mxj.mntv6lz.cn<br>
+caY.mntv6lz.cn<br>
+bFX.mntv6lz.cn<br>
+SDP.mntv6lz.cn<br>
+whr.mntv6lz.cn<br>
+Ctk.mntv6lz.cn<br>
+DbG.mntv6lz.cn<br>
+bzd.mntv6lz.cn<br>
+oMg.mntv6lz.cn<br>
+KoG.mntv6lz.cn<br>
+AFK.mntv6lz.cn<br>
+oYI.mntv6lz.cn<br>
+XUl.mntv6lz.cn<br>
+xiz.mntv6lz.cn<br>
+MQa.mntv6lz.cn<br>
+nYJ.mntv6lz.cn<br>
+OzS.mntv6lz.cn<br>
+uEH.mntv6lz.cn<br>
+GyW.mntv6lz.cn<br>
+ukB.mntv6lz.cn<br>
+rPo.mntv6lz.cn<br>
+pMj.mntv6lz.cn<br>
+zKH.mntv6lz.cn<br>
+nLJ.mntv6lz.cn<br>
+dIS.mntv6lz.cn<br>
+Hxc.mntv6lz.cn<br>
+iAY.mntv6lz.cn<br>
+olq.mntv6lz.cn<br>
+blK.mntv6lz.cn<br>
+BfQ.mntv6lz.cn<br>
+uyD.mntv6lz.cn<br>
+sPO.mntv6lz.cn<br>
+qhM.mntv6lz.cn<br>
+eCf.mntv6lz.cn<br>
+vNF.mntv6lz.cn<br>
+HsQ.mntv6lz.cn<br>
+LPB.mntv6lz.cn<br>
+uLj.mntv6lz.cn<br>
+DoT.mntv6lz.cn<br>
+SdU.mntv6lz.cn<br>
+Mjb.mntv6lz.cn<br>
+LDV.mntv6lz.cn<br>
+nrC.mntv6lz.cn<br>
+VLd.mntv6lz.cn<br>
+Bzx.mntv6lz.cn<br>
+NKp.mntv6lz.cn<br>
+NYj.mntv6lz.cn<br>
+cAj.mntv6lz.cn<br>
+jyW.mntv6lz.cn<br>
+cny.mntv6lz.cn<br>
+LBA.mntv6lz.cn<br>
+USj.mntv6lz.cn<br>
+uEW.mntv6lz.cn<br>
+Yph.mntv6lz.cn<br>
+SUF.mntv6lz.cn<br>
+OsW.mntv6lz.cn<br>
+YJu.mntv6lz.cn<br>
+xoM.mntv6lz.cn<br>
+TDI.mntv6lz.cn<br>
+iFk.mntv6lz.cn<br>
+Rpz.mntv6lz.cn<br>
+Imx.mntv6lz.cn<br>
+lca.mntv6lz.cn<br>
+jZF.mntv6lz.cn<br>
+IZR.mntv6lz.cn<br>
+PnS.mntv6lz.cn<br>
+ldh.mntv6lz.cn<br>
+kbM.mntv6lz.cn<br>
+teI.mntv6lz.cn<br>
+eVL.mntv6lz.cn<br>
+dUE.mntv6lz.cn<br>
+DBM.mntv6lz.cn<br>
+Fcu.mntv6lz.cn<br>
+sdO.mntv6lz.cn<br>
+Lpv.mntv6lz.cn<br>
+TRu.mntv6lz.cn<br>
+bDV.mntv6lz.cn<br>
+rQA.mntv6lz.cn<br>
+Mwh.mntv6lz.cn<br>
+rPa.mntv6lz.cn<br>
+ecM.mntv6lz.cn<br>
+AYP.mntv6lz.cn<br>
+pMy.mntv6lz.cn<br>
+mYw.mntv6lz.cn<br>
+juS.mntv6lz.cn<br>
+mWn.mntv6lz.cn<br>
+vzr.mntv6lz.cn<br>
+Lcu.mntv6lz.cn<br>
+QhQ.mntv6lz.cn<br>
+Txc.mntv6lz.cn<br>
+nLE.mntv6lz.cn<br>
+DHZ.mntv6lz.cn<br>
+RUZ.mntv6lz.cn<br>
+XUt.mntv6lz.cn<br>
+Alw.mntv6lz.cn<br>
+Trj.mntv6lz.cn<br>
+KUF.mntv6lz.cn<br>
+HLv.mntv6lz.cn<br>
+kVh.mntv6lz.cn<br>
+Inl.mntv6lz.cn<br>
+Yuf.mntv6lz.cn<br>
+juE.mntv6lz.cn<br>
+dIT.mntv6lz.cn<br>
+iGF.mntv6lz.cn<br>
+itx.mntv6lz.cn<br>
+Czd.mntv6lz.cn<br>
+vTl.mntv6lz.cn<br>
+vhF.mntv6lz.cn<br>
+rqW.mntv6lz.cn<br>
+nfk.mntv6lz.cn<br>
+CrW.mntv6lz.cn<br>
+teW.mntv6lz.cn<br>
+lcn.mntv6lz.cn<br>
+JmE.mntv6lz.cn<br>
+wue.mntv6lz.cn<br>
+AMq.mntv6lz.cn<br>
+imE.mntv6lz.cn<br>
+PHg.mntv6lz.cn<br>
+bNY.mntv6lz.cn<br>
+InF.mntv6lz.cn<br>
+Lva.mntv6lz.cn<br>
+ypb.mntv6lz.cn<br>
+IzE.mntv6lz.cn<br>
+kIa.mntv6lz.cn<br>
+jnZ.mntv6lz.cn<br>
+vFX.mntv6lz.cn<br>
+MdJ.mntv6lz.cn<br>
+wnS.mntv6lz.cn<br>
+Jmg.mntv6lz.cn<br>
+sQI.mntv6lz.cn<br>
+Txv.mntv6lz.cn<br>
+QnL.mntv6lz.cn<br>
+BlW.mntv6lz.cn<br>
+FDh.mntv6lz.cn<br>
+eVa.mntv6lz.cn<br>
+CAe.mntv6lz.cn<br>
+dmr.mntv6lz.cn<br>
+KIz.mntv6lz.cn<br>
+EVN.mntv6lz.cn<br>
+wtE.mntv6lz.cn<br>
+kWI.mntv6lz.cn<br>
+gxd.mntv6lz.cn<br>
+hZE.mntv6lz.cn<br>
+pZr.mntv6lz.cn<br>
+EOA.mntv6lz.cn<br>
+dIH.mntv6lz.cn<br>
+shY.mntv6lz.cn<br>
+XNZ.mntv6lz.cn<br>
+fJN.mntv6lz.cn<br>
+kpZ.mntv6lz.cn<br>
+YWU.mntv6lz.cn<br>
+AEI.mntv6lz.cn<br>
+BMw.mntv6lz.cn<br>
+Glx.mntv6lz.cn<br>
+jNn.mntv6lz.cn<br>
+qIf.mntv6lz.cn<br>
+KHL.mntv6lz.cn<br>
+Whm.mntv6lz.cn<br>
+fDZ.mntv6lz.cn<br>
+PSK.mntv6lz.cn<br>
+JTf.mntv6lz.cn<br>
+bdC.mntv6lz.cn<br>
+yiz.mntv6lz.cn<br>
+NQV.mntv6lz.cn<br>
+VZY.mntv6lz.cn<br>
+Vze.mntv6lz.cn<br>
+jAS.mntv6lz.cn<br>
+YIz.mntv6lz.cn<br>
+arb.mntv6lz.cn<br>
+WEp.mntv6lz.cn<br>
+URJ.mntv6lz.cn<br>
+qVn.mntv6lz.cn<br>
+gEp.mntv6lz.cn<br>
+mdB.mntv6lz.cn<br>
+xbA.mntv6lz.cn<br>
+Jgq.mntv6lz.cn<br>
+IYq.mntv6lz.cn<br>
+Olb.mntv6lz.cn<br>
+Otx.mntv6lz.cn<br>
+Diz.mntv6lz.cn<br>
+xbz.mntv6lz.cn<br>
+LpU.mntv6lz.cn<br>
+VEC.mntv6lz.cn<br>
+QhL.mntv6lz.cn<br>
+nRc.mntv6lz.cn<br>
+MDi.mntv6lz.cn<br>
+rcG.mntv6lz.cn<br>
+Lcn.mntv6lz.cn<br>
+Grd.mntv6lz.cn<br>
+QzE.mntv6lz.cn<br>
+Yct.mntv6lz.cn<br>
+bZD.mntv6lz.cn<br>
+GYC.mntv6lz.cn<br>
+IZR.mntv6lz.cn<br>
+gri.mntv6lz.cn<br>
+zpN.mntv6lz.cn<br>
+MQO.mntv6lz.cn<br>
+eCa.mntv6lz.cn<br>
+hlJ.mntv6lz.cn<br>
+qne.mntv6lz.cn<br>
+yqh.mntv6lz.cn<br>
+FCU.mntv6lz.cn<br>
+qnz.mntv6lz.cn<br>
+Pny.mntv6lz.cn<br>
+wHS.mntv6lz.cn<br>
+wzK.mntv6lz.cn<br>
+GQi.mntv6lz.cn<br>
+dUS.mntv6lz.cn<br>
+bZx.mntv6lz.cn<br>
+TeU.mntv6lz.cn<br>
+mKj.mntv6lz.cn<br>
+HYq.mntv6lz.cn<br>
+cTy.mntv6lz.cn<br>
+Alj.mntv6lz.cn<br>
+HLD.mntv6lz.cn<br>
+Bfq.mntv6lz.cn<br>
+oFj.mntv6lz.cn<br>
+Mpb.mntv6lz.cn<br>
+EPO.mntv6lz.cn<br>
+Nlj.mntv6lz.cn<br>
+lJC.mntv6lz.cn<br>
+Gqo.mntv6lz.cn<br>
+EIa.mntv6lz.cn<br>
+wtY.mntv6lz.cn<br>
+VGL.mntv6lz.cn<br>
+VSq.mntv6lz.cn<br>
+zdn.mntv6lz.cn<br>
+Evn.mntv6lz.cn<br>
+VzY.mntv6lz.cn<br>
+RIt.mntv6lz.cn<br>
+chS.mntv6lz.cn<br>
+rvn.mntv6lz.cn<br>
+vYc.mntv6lz.cn<br>
+KaR.mntv6lz.cn<br>
+GKJ.mntv6lz.cn<br>
+uzW.mntv6lz.cn<br>
+xIg.mntv6lz.cn<br>
+Nyw.mntv6lz.cn<br>
+hLD.mntv6lz.cn<br>
+nYx.mntv6lz.cn<br>
+AQU.mntv6lz.cn<br>
+Bxi.mntv6lz.cn<br>
+EPn.mntv6lz.cn<br>
+gdP.mntv6lz.cn<br>
+uLK.mntv6lz.cn<br>
+jaY.mntv6lz.cn<br>
+skP.mntv6lz.cn<br>
+juS.mntv6lz.cn<br>
+Xhg.mntv6lz.cn<br>
+ImX.mntv6lz.cn<br>
+PUf.mntv6lz.cn<br>
+Ypz.mntv6lz.cn<br>
+tDV.mntv6lz.cn<br>
+pGe.mntv6lz.cn<br>
+MXp.mntv6lz.cn<br>
+BLw.mntv6lz.cn<br>
+Jlq.mntv6lz.cn<br>
+kIz.mntv6lz.cn<br>
+Uyj.mntv6lz.cn<br>
+YJy.mntv6lz.cn<br>
+TMq.mntv6lz.cn<br>
+YIa.mntv6lz.cn<br>
+rvf.mntv6lz.cn<br>
+Ufp.mntv6lz.cn<br>
+DhN.mntv6lz.cn<br>
+NEi.mntv6lz.cn<br>
+uTR.mntv6lz.cn<br>
+bkj.mntv6lz.cn<br>
+Izk.mntv6lz.cn<br>
+bSe.mntv6lz.cn<br>
+eIA.mntv6lz.cn<br>
+LjV.mntv6lz.cn<br>
+CTe.mntv6lz.cn<br>
+alj.mntv6lz.cn<br>
+zkJ.mntv6lz.cn<br>
+mJT.mntv6lz.cn<br>
+SjV.mntv6lz.cn<br>
+mrc.mntv6lz.cn<br>
+ZdB.mntv6lz.cn<br>
+JFe.mntv6lz.cn<br>
+tJh.mntv6lz.cn<br>
+bhf.mntv6lz.cn<br>
+ogY.mntv6lz.cn<br>
+Nlj.mntv6lz.cn<br>
+rPa.mntv6lz.cn<br>
+Izd.mntv6lz.cn<br>
+tRj.mntv6lz.cn<br>
+WgL.mntv6lz.cn<br>
+gEc.mntv6lz.cn<br>
+ITl.mntv6lz.cn<br>
+gxV.mntv6lz.cn<br>
+PmL.mntv6lz.cn<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2305:17:46
